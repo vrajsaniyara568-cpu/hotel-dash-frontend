@@ -2,95 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Hotel Management System Design System - Inspired by luxury hospitality */
 
 @layer base {
   :root {
+    /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 27% 17%;
 
+    /* Card components */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 27% 17%;
 
+    /* Popover components */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 27% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep Hotel Navy */
+    --primary: 215 40% 15%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 215 40% 12%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Gold */
+    --secondary: 43 74% 66%;
+    --secondary-foreground: 215 40% 15%;
+    --secondary-hover: 43 74% 60%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent - Sophisticated Teal */
+    --accent: 184 65% 40%;
+    --accent-foreground: 0 0% 98%;
+    --accent-hover: 184 65% 35%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted colors */
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 215 40% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border and input */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 215 40% 15%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 40% 15%), hsl(215 40% 25%));
+    --gradient-secondary: linear-gradient(135deg, hsl(43 74% 66%), hsl(43 74% 76%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 40% 15%), hsl(184 65% 40%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
 
-    --sidebar-background: 0 0% 98%;
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(215 40% 15% / 0.1), 0 2px 4px -1px hsl(215 40% 15% / 0.06);
+    --shadow-elevated: 0 10px 15px -3px hsl(215 40% 15% / 0.1), 0 4px 6px -2px hsl(215 40% 15% / 0.05);
+    --shadow-luxury: 0 20px 25px -5px hsl(215 40% 15% / 0.1), 0 10px 10px -5px hsl(215 40% 15% / 0.04);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-primary: 240 5.9% 10%;
+    --radius: 0.75rem;
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar - Hotel Navy Theme */
+    --sidebar-background: 215 40% 15%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 43 74% 66%;
+    --sidebar-primary-foreground: 215 40% 15%;
+    --sidebar-accent: 215 40% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 215 40% 25%;
+    --sidebar-ring: 184 65% 40%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode would go here - keeping light for now */
   }
 }
 
@@ -100,6 +89,96 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Hotel-specific component styles */
+  .hotel-card {
+    @apply bg-gradient-to-br from-card to-muted/50 shadow-[var(--shadow-card)] rounded-[var(--radius)] border border-border/50;
+    transition: var(--transition-smooth);
+  }
+
+  .hotel-card:hover {
+    @apply shadow-[var(--shadow-elevated)] scale-[1.02];
+  }
+
+  .luxury-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .status-available {
+    @apply bg-success/10 text-success border border-success/20 px-2 py-1 rounded-md text-xs font-medium;
+  }
+
+  .status-occupied {
+    @apply bg-destructive/10 text-destructive border border-destructive/20 px-2 py-1 rounded-md text-xs font-medium;
+  }
+
+  .status-maintenance {
+    @apply bg-warning/10 text-warning-foreground border border-warning/20 px-2 py-1 rounded-md text-xs font-medium;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    border-image: var(--gradient-primary) 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  70% {
+    transform: scale(0.9) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
