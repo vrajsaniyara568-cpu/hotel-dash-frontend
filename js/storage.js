@@ -1,17 +1,15 @@
 // LocalStorage utilities for Hotel Management System
 
-import type { Room, Guest, Booking, Invoice } from '@/types/hotel';
-
 const STORAGE_KEYS = {
   ROOMS: 'hotel_rooms',
   GUESTS: 'hotel_guests',
   BOOKINGS: 'hotel_bookings',
   INVOICES: 'hotel_invoices',
   USER_PREFERENCES: 'hotel_user_preferences',
-} as const;
+};
 
 // Generic storage functions
-function getFromStorage<T>(key: string): T[] {
+function getFromStorage(key) {
   try {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data, (key, value) => {
@@ -27,7 +25,7 @@ function getFromStorage<T>(key: string): T[] {
   }
 }
 
-function saveToStorage<T>(key: string, data: T[]): void {
+function saveToStorage(key, data) {
   try {
     localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
@@ -36,18 +34,18 @@ function saveToStorage<T>(key: string, data: T[]): void {
 }
 
 // Room storage functions
-export const roomStorage = {
-  getAll: (): Room[] => getFromStorage<Room>(STORAGE_KEYS.ROOMS),
+const roomStorage = {
+  getAll: () => getFromStorage(STORAGE_KEYS.ROOMS),
   
-  save: (rooms: Room[]): void => saveToStorage(STORAGE_KEYS.ROOMS, rooms),
+  save: (rooms) => saveToStorage(STORAGE_KEYS.ROOMS, rooms),
   
-  add: (room: Room): void => {
+  add: (room) => {
     const rooms = roomStorage.getAll();
     rooms.push(room);
     roomStorage.save(rooms);
   },
   
-  update: (id: string, updates: Partial<Room>): void => {
+  update: (id, updates) => {
     const rooms = roomStorage.getAll();
     const index = rooms.findIndex(r => r.id === id);
     if (index !== -1) {
@@ -56,33 +54,33 @@ export const roomStorage = {
     }
   },
   
-  delete: (id: string): void => {
+  delete: (id) => {
     const rooms = roomStorage.getAll().filter(r => r.id !== id);
     roomStorage.save(rooms);
   },
   
-  findById: (id: string): Room | undefined => {
+  findById: (id) => {
     return roomStorage.getAll().find(r => r.id === id);
   },
   
-  findByNumber: (number: string): Room | undefined => {
+  findByNumber: (number) => {
     return roomStorage.getAll().find(r => r.number === number);
   }
 };
 
 // Guest storage functions
-export const guestStorage = {
-  getAll: (): Guest[] => getFromStorage<Guest>(STORAGE_KEYS.GUESTS),
+const guestStorage = {
+  getAll: () => getFromStorage(STORAGE_KEYS.GUESTS),
   
-  save: (guests: Guest[]): void => saveToStorage(STORAGE_KEYS.GUESTS, guests),
+  save: (guests) => saveToStorage(STORAGE_KEYS.GUESTS, guests),
   
-  add: (guest: Guest): void => {
+  add: (guest) => {
     const guests = guestStorage.getAll();
     guests.push(guest);
     guestStorage.save(guests);
   },
   
-  update: (id: string, updates: Partial<Guest>): void => {
+  update: (id, updates) => {
     const guests = guestStorage.getAll();
     const index = guests.findIndex(g => g.id === id);
     if (index !== -1) {
@@ -91,33 +89,33 @@ export const guestStorage = {
     }
   },
   
-  delete: (id: string): void => {
+  delete: (id) => {
     const guests = guestStorage.getAll().filter(g => g.id !== id);
     guestStorage.save(guests);
   },
   
-  findById: (id: string): Guest | undefined => {
+  findById: (id) => {
     return guestStorage.getAll().find(g => g.id === id);
   },
   
-  findByEmail: (email: string): Guest | undefined => {
+  findByEmail: (email) => {
     return guestStorage.getAll().find(g => g.email.toLowerCase() === email.toLowerCase());
   }
 };
 
 // Booking storage functions
-export const bookingStorage = {
-  getAll: (): Booking[] => getFromStorage<Booking>(STORAGE_KEYS.BOOKINGS),
+const bookingStorage = {
+  getAll: () => getFromStorage(STORAGE_KEYS.BOOKINGS),
   
-  save: (bookings: Booking[]): void => saveToStorage(STORAGE_KEYS.BOOKINGS, bookings),
+  save: (bookings) => saveToStorage(STORAGE_KEYS.BOOKINGS, bookings),
   
-  add: (booking: Booking): void => {
+  add: (booking) => {
     const bookings = bookingStorage.getAll();
     bookings.push(booking);
     bookingStorage.save(bookings);
   },
   
-  update: (id: string, updates: Partial<Booking>): void => {
+  update: (id, updates) => {
     const bookings = bookingStorage.getAll();
     const index = bookings.findIndex(b => b.id === id);
     if (index !== -1) {
@@ -126,37 +124,37 @@ export const bookingStorage = {
     }
   },
   
-  delete: (id: string): void => {
+  delete: (id) => {
     const bookings = bookingStorage.getAll().filter(b => b.id !== id);
     bookingStorage.save(bookings);
   },
   
-  findById: (id: string): Booking | undefined => {
+  findById: (id) => {
     return bookingStorage.getAll().find(b => b.id === id);
   },
   
-  findByGuestId: (guestId: string): Booking[] => {
+  findByGuestId: (guestId) => {
     return bookingStorage.getAll().filter(b => b.guestId === guestId);
   },
   
-  findByRoomId: (roomId: string): Booking[] => {
+  findByRoomId: (roomId) => {
     return bookingStorage.getAll().filter(b => b.roomId === roomId);
   }
 };
 
 // Invoice storage functions
-export const invoiceStorage = {
-  getAll: (): Invoice[] => getFromStorage<Invoice>(STORAGE_KEYS.INVOICES),
+const invoiceStorage = {
+  getAll: () => getFromStorage(STORAGE_KEYS.INVOICES),
   
-  save: (invoices: Invoice[]): void => saveToStorage(STORAGE_KEYS.INVOICES, invoices),
+  save: (invoices) => saveToStorage(STORAGE_KEYS.INVOICES, invoices),
   
-  add: (invoice: Invoice): void => {
+  add: (invoice) => {
     const invoices = invoiceStorage.getAll();
     invoices.push(invoice);
     invoiceStorage.save(invoices);
   },
   
-  update: (id: string, updates: Partial<Invoice>): void => {
+  update: (id, updates) => {
     const invoices = invoiceStorage.getAll();
     const index = invoices.findIndex(i => i.id === id);
     if (index !== -1) {
@@ -165,24 +163,24 @@ export const invoiceStorage = {
     }
   },
   
-  delete: (id: string): void => {
+  delete: (id) => {
     const invoices = invoiceStorage.getAll().filter(i => i.id !== id);
     invoiceStorage.save(invoices);
   },
   
-  findById: (id: string): Invoice | undefined => {
+  findById: (id) => {
     return invoiceStorage.getAll().find(i => i.id === id);
   },
   
-  findByBookingId: (bookingId: string): Invoice | undefined => {
+  findByBookingId: (bookingId) => {
     return invoiceStorage.getAll().find(i => i.bookingId === bookingId);
   }
 };
 
 // Initialize with sample data if empty
-export function initializeSampleData(): void {
+function initializeSampleData() {
   if (roomStorage.getAll().length === 0) {
-    const sampleRooms: Room[] = [
+    const sampleRooms = [
       {
         id: '1',
         number: '101',
@@ -224,7 +222,7 @@ export function initializeSampleData(): void {
   }
 
   if (guestStorage.getAll().length === 0) {
-    const sampleGuests: Guest[] = [
+    const sampleGuests = [
       {
         id: '1',
         firstName: 'John',
@@ -238,4 +236,9 @@ export function initializeSampleData(): void {
     ];
     guestStorage.save(sampleGuests);
   }
+}
+
+// Generate unique ID
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
